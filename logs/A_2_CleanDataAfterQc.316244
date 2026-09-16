@@ -1,0 +1,132 @@
+###########################################################
+### [Clean data after QC]
+###	- STEP: A_2_CleanDataAfterQc
+###
+###	- WK_DIR: 
+###		- WK_DIR_PREQC:
+###		>> /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_1_ApplyQc/03_pca
+###		- WK_DIR_QC:
+###		>> /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc
+###----------------------------------------------------###
+
+(8) Identification of individuals of divergent ancestry [EAS Again]
+- Remove outliner by PC1 nad PC2
+>> /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_1_ApplyQc/03_pca
+
+eigen_file:
+	/home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_1_ApplyQc/03_pca/covid-vac_easpop.eigenvec
+SMPL_PTN: CUH-\d{4}
+COND_1: PC1 > 0.02
+COND_2: PC2 > 0.1
+
+Loading required package: pacman
+>> /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_1_ApplyQc/03_pca/covid-vac_easpop_fail_pca.txt
+
+- Remove samples using covid-vac_easpop_fail_pca.txt
+>> ./01_repca
+
+PLINK v1.90b7.2 64-bit (11 Dec 2023)           www.cog-genomics.org/plink/1.9/
+(C) 2005-2023 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/01_repca/covid-vac_eashap_qc.log.
+Options in effect:
+  --allow-no-sex
+  --bfile /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_1_ApplyQc/03_pca/covid-vac_eashap
+  --make-bed
+  --out /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/01_repca/covid-vac_eashap_qc
+  --remove /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_1_ApplyQc/03_pca/covid-vac_easpop_fail_pca.txt
+
+257359 MB RAM detected; reserving 128679 MB for main workspace.
+37048 variants loaded from .bim file.
+370 people (190 males, 180 females) loaded from .fam.
+370 phenotype values loaded from .fam.
+--remove: 363 people remaining.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 363 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+Total genotyping rate in remaining samples is 0.998717.
+37048 variants and 363 people pass filters and QC.
+Phenotype data is quantitative.
+--make-bed to
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/01_repca/covid-vac_eashap_qc.bed
++
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/01_repca/covid-vac_eashap_qc.bim
++
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/01_repca/covid-vac_eashap_qc.fam
+... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99%done.
+  finished: 26/09/15 14:56:26
+
+
+(9) Remove individuals failing QC (2)
+- List up all samples not satisfied with criteria
+>> /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/covid-vac_fail_all_smpl.txt
+
+- Apply sample QC
+PLINK v1.90b7.2 64-bit (11 Dec 2023)           www.cog-genomics.org/plink/1.9/
+(C) 2005-2023 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/01_qc/covid-vac.log.
+Options in effect:
+  --allow-no-sex
+  --bfile /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/00_working/covid-vac
+  --chr 1-23
+  --make-bed
+  --out /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/01_qc/covid-vac
+  --remove /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/covid-vac_fail_all_smpl.txt
+
+257359 MB RAM detected; reserving 128679 MB for main workspace.
+473569 variants loaded from .bim file.
+200 people (104 males, 96 females) loaded from .fam.
+--remove: 193 people remaining.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 193 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+Warning: 1211 het. haploid genotypes present (see
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/01_qc/covid-vac.hh );
+many commands treat these as missing.
+Total genotyping rate in remaining samples is 0.999163.
+473569 variants and 193 people pass filters and QC.
+Note: No phenotypes present.
+--make-bed to
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/01_qc/covid-vac.bed +
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/01_qc/covid-vac.bim +
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/01_qc/covid-vac.fam ...
+0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99%done.
+	Finished: 26/09/15 14:56:27
+
+- Extract genotype data for PCA analysis [ONLY samples]
+
+	Finished: 26/09/15 14:56:27
+
+- Start PCA analysis [EAS]
+
+/var/spool/slurm/job316244/slurm_script: line 162: smartpca.perl: command not found
+ERROR: Not exist indicated file: /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/01_repca/covid-vac_csct.pca.evec
+
+(10) Prepare each dataset and apply QC to markers
+>> ./02_snp_check
+
+-e Identify all markers with an excessive missing data rate
+
+PLINK v1.90b7.2 64-bit (11 Dec 2023)           www.cog-genomics.org/plink/1.9/
+(C) 2005-2023 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/02_snp_check/covid-vac.log.
+Options in effect:
+  --bfile /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/01_qc/covid-vac
+  --missing
+  --out /home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/02_snp_check/covid-vac
+
+257359 MB RAM detected; reserving 128679 MB for main workspace.
+473569 variants loaded from .bim file.
+193 people (97 males, 96 females) loaded from .fam.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 193 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+Warning: 1211 het. haploid genotypes present (see
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/02_snp_check/covid-vac.hh
+); many commands treat these as missing.
+Total genotyping rate is 0.999163.
+--missing: Sample missing data report written to
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/02_snp_check/covid-vac.imiss,
+and variant-based missing data report written to
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/A_2_CleanDataAfterQc/02_snp_check/covid-vac.lmiss.
+	Finished: 26/09/15 14:56:27
+

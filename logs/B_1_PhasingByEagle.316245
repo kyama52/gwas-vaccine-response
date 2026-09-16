@@ -1,0 +1,88 @@
+###########################################################
+### [Phasing and imputation]
+###	- PHASING: EAGLE_DIR
+###
+###	- RES_DIR: /home/kyama/resource
+###		- EAGLE DIR: ./Eagle/BBJ1K
+###		- MINIMAC DIR: ./minimac/BBJ1K
+###	- GENO_DIR: /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype
+###		- APPLIED QC FILES:
+###		>> ./01_qc/covid-vac.(bed|bim|fam)
+###		- GENO_DIR_IMP:
+###		>> ./02_imputation
+###----------------------------------------------------###
+
+(1) Extract common variants to references
+- Convert X chromosome from [23] to [X]
+	- Backup original BIM file:
+	>> ./01_qc/covid-vac.bimbak
+	- Converted BIM file:
+	>> ./01_qc/covid-vac.bim
+
+- Strand flips by snpflip and PLINK
+>> ./02_imputation/etc/covid-vac.ambiguous
+>> ./02_imputation/etc/covid-vac.reverse
+
+PLINK v1.90b7.2 64-bit (11 Dec 2023)           www.cog-genomics.org/plink/1.9/
+(C) 2005-2023 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation/covid-vac_sflip.log.
+Options in effect:
+  --allow-no-sex
+  --bfile /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/01_qc/covid-vac
+  --exclude /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation/etc/covid-vac.ambiguous
+  --flip /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation/etc/covid-vac.reverse
+  --make-bed
+  --out /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation/covid-vac_sflip
+
+257359 MB RAM detected; reserving 128679 MB for main workspace.
+473569 variants loaded from .bim file.
+193 people (97 males, 96 females) loaded from .fam.
+--flip: 214901 SNPs flipped, 1 SNP ID not present.
+--exclude: 468607 variants remaining.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 193 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+Warning: 1156 het. haploid genotypes present (see
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation/covid-vac_sflip.hh
+); many commands treat these as missing.
+Total genotyping rate is 0.99917.
+468607 variants and 193 people pass filters and QC.
+Note: No phenotypes present.
+--make-bed to
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation/covid-vac_sflip.bed
++
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation/covid-vac_sflip.bim
++
+/home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation/covid-vac_sflip.fam
+... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99%done.
+
+>> ./02_imputation/covid-vac_sflip.(bed|bim|fam)
+
+- Using by sub-script [sub_C_extract_cmn_vars.R]
+Loading required package: pacman
+
+BIM_FILE:
+	>> /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation/covid-vac_sflip.bim
+
+OUT_DIR:
+	>> /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation
+
+[Environmental argmunets]
+
+- Reference directory:
+	>> ~/resource/Eagle/BBJ1K
+	- Reference name: BBJ1K_1KGP_RefPanel_b155
+
+- Bim file:
+	>> /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation/covid-vac_sflip.bim
+- Output directory:
+	>> /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation
+
+[Processing data]
+
+- Load BIM file:
+	<< /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype/02_imputation/covid-vac_sflip.bim
+	- 468607 records
+- Load BCF files:
+	<< ./BBJ1K_1KGP_RefPanel_b155_chr1.bcf
+	<< ./BBJ1K_1KGP_RefPanel_b155_chr10.bcf
