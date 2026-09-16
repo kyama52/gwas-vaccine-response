@@ -13,35 +13,26 @@ set -eu
 
 #------------------------------------------------------------------------------
 # [Arguments] (2) Environmental args
-SRC_DIR=$HOME/analysis/COVID-19
-SMPL_NAME=CUH-GWAS_230215
-GENO_DNAME=PLINK_160223_1213
+SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SMPL_NAME=covid-vac
 
 DHLA_DIR=$HOME/local/DEEP-HLA
 
-GENO_DIR=${SRC_DIR}/genotype/${GENO_DNAME}
+GENO_DIR=${SRC_DIR}/genotype
 GENO_DIR_HLA=${GENO_DIR}/04_imputation_hla
-PHASED_FNAME=${GENO_DIR_HLA}/${SMPL_NAME}_mhc_phased
+PHASED_FNAME=${GENO_DIR_HLA}/${SMPL_NAME}_hla_phased
 IMPUTED_FNAME=${PHASED_FNAME/_phased/_imputed}
 
 today=$(date +%y%m%d)
+TOOL_DIR=${SRC_DIR}/scripts/gwas_analysis
 
 # (3) Prepare venv for DEEP*HLA
 VENV_DIR=${HOME}/.venvs
 VNAME=DEEP-HLA
-if [ ! -d ${VENV_DIR} ]; then
-    [ ! -d $VENV_DIR ] && mkdir $VENV_DIR
-    if [ ! -d ${VENV_DIR}/${VNAME} ]; then
-        bash ${SRC_DIR}/2308_impHLA/script/Z_2_ContructVenvDeepHLA.sh
-    fi
+[[ ! -d ${VENV_DIR} ]] && mkdir -p ${VENV_DIR}
+if [ ! -d ${VENV_DIR}/${VNAME} ]; then
+    bash ${TOOL_DIR}/04_hla_imputation/D_0_SetupVencDeepHLA.sh
 fi
-
-# atexit() {
-#     [[ -n $tmpfile ]] && rm -f "$tmpfile"
-# }
-# tmpfile=$(mktemp)
-# trap atexit EXIT
-# trap 'trap - EXIT; atexit; exit -i' SIGHUP SIGINT SIGTERM
 
 #------------------------------------------------------------------------------
 # [Main script ]
@@ -67,7 +58,7 @@ if [ ! -f ${PHASED_FNAME}.haps ] || [ ! -f ${PHASED_FNAME}.sample ]; then
         echo -e "\t- NOT Exist: ${PHASED_FNAME/$GENO_DIR/.}.haps"
     [ ! -f ${PHASED_FNAME}.sample ] &&
         echo -e "\t- NOT Exist: ${PHASED_FNAME/$GENO_DIR/.}.sample"
-    return 1
+    exit 1
 fi
 
 if [ ! -f ${PHASED_FNAME}.bim ]; then

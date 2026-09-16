@@ -1,6 +1,6 @@
 #! /bin/bash
 # ==============================================================================
-#  Preapare for running DEEP-HLA
+#  Prepare for running DEEP-HLA
 #------------------------------------------------------------------------------
 #  Memo
 # (1) Prepare genotype data
@@ -10,6 +10,7 @@
 #SBATCH --mem=8gb
 #SBATCH -o logs/%x.%j
 #SBATCH -e logs/%x.%j
+#SBATCH -c 12
 #SBATCH -p cpu
 
 set -eu
@@ -80,7 +81,7 @@ if [ ! -f ${hla_fpath}.bed ]; then
         --make-bed \
         --out ${hla_fpath}
 
-    echo -e "\n\t>> ${hla_fpath/${GENO_DIR}/.}_mhc.(bim|bed|fam)"
+    echo -e "\n\t>> ${hla_fpath/${GENO_DIR}/.}.(bim|bed|fam)"
 fi
 
 # b. Reformat BIM file for DEEP-HLA

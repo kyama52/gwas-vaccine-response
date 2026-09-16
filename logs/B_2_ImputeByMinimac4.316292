@@ -1,0 +1,349 @@
+###########################################################
+### [Phasing and imputation]
+###	- IMPUTATION: minimac4
+###
+###	- RES_DIR: /home/kyama/resource
+###		- EAGLE DIR: ./Eagle/BBJ1K
+###		- MINIMAC DIR: ./minimac/BBJ1K
+###	- GENO_DIR: /home/kyama/analysis/COVID-19/2609_PrepGitRepo/genotype
+###		- GENO_DIR_IMP:
+###		>> ./02_imputation
+###----------------------------------------------------###
+
+(1) Imputation with minimac4.
+	For every chromosome, perform imputations in chunks of 5 Mb
+
+[chr1]
+
+- chunk(0): 1-25000000
+Submitted batch job 316293
+- chunk(1): 25000001-50000000
+Submitted batch job 316294
+- chunk(2): 50000001-75000000
+Submitted batch job 316295
+- chunk(3): 75000001-100000000
+Submitted batch job 316296
+- chunk(4): 100000001-125000000
+Submitted batch job 316297
+- chunk(5): 125000001-150000000
+Submitted batch job 316298
+- chunk(6): 150000001-175000000
+Submitted batch job 316299
+- chunk(7): 175000001-200000000
+Submitted batch job 316300
+- chunk(8): 200000001-225000000
+Submitted batch job 316301
+- chunk(9): 225000001-249218992
+Submitted batch job 316302
+
+[chr2]
+
+- chunk(0): 1-25000000
+Submitted batch job 316303
+- chunk(1): 25000001-50000000
+Submitted batch job 316304
+- chunk(2): 50000001-75000000
+Submitted batch job 316305
+- chunk(3): 75000001-100000000
+Submitted batch job 316306
+- chunk(4): 100000001-125000000
+Submitted batch job 316307
+- chunk(5): 125000001-150000000
+Submitted batch job 316308
+- chunk(6): 150000001-175000000
+Submitted batch job 316309
+- chunk(7): 175000001-200000000
+Submitted batch job 316310
+- chunk(8): 200000001-225000000
+Submitted batch job 316311
+- chunk(9): 225000001-243090997
+Submitted batch job 316312
+
+[chr3]
+
+- chunk(0): 1-25000000
+Submitted batch job 316313
+- chunk(1): 25000001-50000000
+Submitted batch job 316314
+- chunk(2): 50000001-75000000
+Submitted batch job 316315
+- chunk(3): 75000001-100000000
+Submitted batch job 316316
+- chunk(4): 100000001-125000000
+Submitted batch job 316317
+- chunk(5): 125000001-150000000
+Submitted batch job 316318
+- chunk(6): 150000001-175000000
+Submitted batch job 316319
+- chunk(7): 175000001-197874528
+Submitted batch job 316320
+
+[chr4]
+
+- chunk(0): 1-25000000
+Submitted batch job 316321
+- chunk(1): 25000001-50000000
+Submitted batch job 316322
+- chunk(2): 50000001-75000000
+Submitted batch job 316323
+- chunk(3): 75000001-100000000
+Submitted batch job 316324
+- chunk(4): 100000001-125000000
+Submitted batch job 316325
+- chunk(5): 125000001-150000000
+Submitted batch job 316326
+- chunk(6): 150000001-175000000
+Submitted batch job 316327
+- chunk(7): 175000001-191028645
+Submitted batch job 316328
+
+[chr5]
+
+- chunk(0): 1-25000000
+Submitted batch job 316329
+- chunk(1): 25000001-50000000
+Submitted batch job 316330
+- chunk(2): 50000001-75000000
+Submitted batch job 316331
+- chunk(3): 75000001-100000000
+Submitted batch job 316332
+- chunk(4): 100000001-125000000
+Submitted batch job 316333
+- chunk(5): 125000001-150000000
+Submitted batch job 316334
+- chunk(6): 150000001-175000000
+Submitted batch job 316335
+- chunk(7): 175000001-180715810
+Submitted batch job 316336
+
+[chr6]
+
+- chunk(0): 1-25000000
+Submitted batch job 316337
+- chunk(1): 25000001-50000000
+Submitted batch job 316338
+- chunk(2): 50000001-75000000
+Submitted batch job 316339
+- chunk(3): 75000001-100000000
+Submitted batch job 316340
+- chunk(4): 100000001-125000000
+Submitted batch job 316341
+- chunk(5): 125000001-150000000
+Submitted batch job 316342
+- chunk(6): 150000001-171011218
+Submitted batch job 316343
+
+[chr7]
+
+- chunk(0): 1-25000000
+Submitted batch job 316344
+- chunk(1): 25000001-50000000
+Submitted batch job 316345
+- chunk(2): 50000001-75000000
+Submitted batch job 316346
+- chunk(3): 75000001-100000000
+Submitted batch job 316347
+- chunk(4): 100000001-125000000
+Submitted batch job 316348
+- chunk(5): 125000001-150000000
+Submitted batch job 316349
+- chunk(6): 150000001-159126774
+Submitted batch job 316350
+
+[chr8]
+
+- chunk(0): 1-25000000
+Submitted batch job 316351
+- chunk(1): 25000001-50000000
+Submitted batch job 316352
+- chunk(2): 50000001-75000000
+Submitted batch job 316353
+- chunk(3): 75000001-100000000
+Submitted batch job 316354
+- chunk(4): 100000001-125000000
+Submitted batch job 316355
+- chunk(5): 125000001-146301156
+Submitted batch job 316356
+
+[chr9]
+
+- chunk(0): 1-25000000
+Submitted batch job 316357
+- chunk(1): 25000001-50000000
+Submitted batch job 316358
+- chunk(2): 50000001-75000000
+Submitted batch job 316359
+- chunk(3): 75000001-100000000
+Submitted batch job 316360
+- chunk(4): 100000001-125000000
+Submitted batch job 316361
+- chunk(5): 125000001-141109979
+Submitted batch job 316362
+
+[chr10]
+
+- chunk(0): 1-25000000
+Submitted batch job 316363
+- chunk(1): 25000001-50000000
+Submitted batch job 316364
+- chunk(2): 50000001-75000000
+Submitted batch job 316365
+- chunk(3): 75000001-100000000
+Submitted batch job 316366
+- chunk(4): 100000001-125000000
+Submitted batch job 316367
+- chunk(5): 125000001-135503693
+Submitted batch job 316368
+
+[chr11]
+
+- chunk(0): 1-25000000
+Submitted batch job 316369
+- chunk(1): 25000001-50000000
+Submitted batch job 316370
+- chunk(2): 50000001-75000000
+Submitted batch job 316371
+- chunk(3): 75000001-100000000
+Submitted batch job 316372
+- chunk(4): 100000001-125000000
+Submitted batch job 316373
+- chunk(5): 125000001-134945522
+Submitted batch job 316374
+
+[chr12]
+
+- chunk(0): 1-25000000
+Submitted batch job 316375
+- chunk(1): 25000001-50000000
+Submitted batch job 316376
+- chunk(2): 50000001-75000000
+Submitted batch job 316377
+- chunk(3): 75000001-100000000
+Submitted batch job 316378
+- chunk(4): 100000001-125000000
+Submitted batch job 316379
+- chunk(5): 125000001-133778796
+Submitted batch job 316380
+
+[chr13]
+
+- chunk(0): 1-25000000
+Submitted batch job 316381
+- chunk(1): 25000001-50000000
+Submitted batch job 316382
+- chunk(2): 50000001-75000000
+Submitted batch job 316383
+- chunk(3): 75000001-100000000
+Submitted batch job 316384
+- chunk(4): 100000001-115106996
+Submitted batch job 316385
+
+[chr14]
+
+- chunk(0): 1-25000000
+Submitted batch job 316386
+- chunk(1): 25000001-50000000
+Submitted batch job 316387
+- chunk(2): 50000001-75000000
+Submitted batch job 316388
+- chunk(3): 75000001-100000000
+Submitted batch job 316389
+- chunk(4): 100000001-107288377
+Submitted batch job 316390
+
+[chr15]
+
+- chunk(0): 1-25000000
+Submitted batch job 316391
+- chunk(1): 25000001-50000000
+Submitted batch job 316392
+- chunk(2): 50000001-75000000
+Submitted batch job 316393
+- chunk(3): 75000001-100000000
+Submitted batch job 316394
+- chunk(4): 100000001-102506108
+Submitted batch job 316395
+
+[chr16]
+
+- chunk(0): 1-25000000
+Submitted batch job 316396
+- chunk(1): 25000001-50000000
+Submitted batch job 316397
+- chunk(2): 50000001-75000000
+Submitted batch job 316398
+- chunk(3): 75000001-90163588
+Submitted batch job 316399
+
+[chr17]
+
+- chunk(0): 1-25000000
+Submitted batch job 316400
+- chunk(1): 25000001-50000000
+Submitted batch job 316401
+- chunk(2): 50000001-75000000
+Submitted batch job 316402
+- chunk(3): 75000001-81045269
+Submitted batch job 316403
+
+[chr18]
+
+- chunk(0): 1-25000000
+Submitted batch job 316404
+- chunk(1): 25000001-50000000
+Submitted batch job 316405
+- chunk(2): 50000001-75000000
+Submitted batch job 316406
+- chunk(3): 75000001-78015180
+Submitted batch job 316407
+
+[chr19]
+
+- chunk(0): 1-25000000
+Submitted batch job 316408
+- chunk(1): 25000001-50000000
+Submitted batch job 316409
+- chunk(2): 50000001-59097160
+Submitted batch job 316410
+
+[chr20]
+
+- chunk(0): 1-25000000
+Submitted batch job 316411
+- chunk(1): 25000001-50000000
+Submitted batch job 316412
+- chunk(2): 50000001-62949445
+Submitted batch job 316413
+
+[chr21]
+
+- chunk(0): 1-25000000
+Submitted batch job 316414
+- chunk(1): 25000001-48100155
+Submitted batch job 316415
+
+[chr22]
+
+- chunk(0): 1-25000000
+Submitted batch job 316416
+- chunk(1): 25000001-50000000
+Submitted batch job 316417
+- chunk(2): 50000001-51229805
+Submitted batch job 316418
+
+[chrX]
+
+- chunk(0): 1-25000000
+Submitted batch job 316419
+- chunk(1): 25000001-50000000
+Submitted batch job 316420
+- chunk(2): 50000001-75000000
+Submitted batch job 316421
+- chunk(3): 75000001-100000000
+Submitted batch job 316422
+- chunk(4): 100000001-125000000
+Submitted batch job 316423
+- chunk(5): 125000001-150000000
+Submitted batch job 316424
+- chunk(6): 150000001-155235078
+Submitted batch job 316425
