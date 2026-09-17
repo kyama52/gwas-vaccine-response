@@ -1,36 +1,12 @@
-# ==============================================================================
-# sub_B_4_RunHlaOmnibus.R
-#
-# CD: Jun 17 2024   K.Yamazaki
-# UD: Apr 03 2025
-#   - Bug fix (when to reformat data for OMNIBUS test; pattern = str_c(.x, "_"))
-#   - Apply QC for omnibus test: MAF > 0.01, r2 > 0.7
-#   - Change model indivisual variables to as.matrix
-#       str_flatten( str_subset(colnames(.x), "genotype_\\d+"), collapse = "+")
-#       -> fit_model_value()
-# UD: Jan 23 2025
-#   - Change from sex_vlist(0:2) to sex_tlist("total", "male", "female")
-#   - Add sex as covariate in all samples
-#   - Bug fix ("statistic" was not written in the output file)
-# UD: Dec 09 2024
-#   - Add procedure to apply normalization to each sex-stratified group
-# UD: Aug 28 2024
-#   - Change the environment from windows to linux on va-server
-#   - Change procedure from to run this script to load this script in shell script with apptainer
-#     -> Rename filename from "B_4_RunHlaOmnibus.R" to "sub_B_4_RunHlaOmnibus.R"
-#   - Comment out description of logging
 #------------------------------------------------------------------------------
-# Memo
-#  Perform stratified analysis by sex to files exported by DEEP*HLA
+# Subroutine for rerforming sex-stratified omnibus analysis of HLA amino acid positions
+#  [antibody titer]
 #------------------------------------------------------------------------------
-# ref)
-# - It was made as reference supplied from Dr Naito HLA omnibus test as below;
-#   "~/analysis/COVID-19/DEEP-HLA/240424_Omnibus/HLAassoc.share.R"
-# ==============================================================================
 # [Functions]
 # Use global args(pheno_cname, all_covlist) as default value
 fit_model_value <- function(
-    df, geno_vars = NULL, pheno_cname = NULL, all_covlist = NULL) {
+  df, geno_vars = NULL, pheno_cname = NULL, all_covlist = NULL
+) {
     if (is.null(pheno_cname)) pheno_cname <- get("pheno_cname", envir = .GlobalEnv)
     if (is.null(all_covlist)) all_covlist <- get("all_covlist", envir = .GlobalEnv)
 
@@ -66,14 +42,13 @@ pacman::p_load(
 )
 
 # (1) Environmental arguments
-src_dir <- "~/analysis/COVID-19"
-smpl_name <- "CUH-GWAS_230215"
-geno_dname <- "PLINK_160223_1213"
-step <- "B_4_RunHlaOmnibus"
+src_dir <- "~/analysis/COVID-19/2609_PrepGitRepo"
+smpl_name <- "covid-vac"
+step <- "E_2_HlaOmnibus"
 
-id_cname <- "iid"
-sex_cname <- "sex"
-age_cname <- "age"
+# id_cname <- "iid"
+# sex_cname <- "sex"
+# age_cname <- "age"
 pheno_cname <- "post_titer_norm"
 freq_val <- 0.01
 r2_val <- 0.7
@@ -81,49 +56,34 @@ today <- as.character(format(Sys.time(), "%Y%m%d"))
 sex_tlist <- c("total", "male", "female")
 sig_p <- 5e-8
 
-geno_dir <- file.path(src_dir, "genotype", geno_dname)
-geno_dir_hla <- file.path(geno_dir, "04_imputation_hla")
-imputed_fname <- file.path(geno_dir_hla, str_c(smpl_name, "_mhc_imputed"))
-hla_pfile <- file.path(geno_dir, "etc", "jp.hla.txt")
+geno_dir <- file.path(src_dir, "genotype", "04_imputation_hla")
 
-dgeno_ext <- "dhla.txt"
-dgeno_aa_file <- str_c(imputed_fname, ".aa.", dgeno_ext)
+imputed_fname <- str_c(smpl_name, "_hla_imputed")
+# dgeno_ext <- "dhla.txt"
+# dgeno_aa_file <- str_c(imputed_fname, ".aa.", dgeno_ext)
+dgeno_aa_fname <- file.path(geno_dir, str_c(imputed_fname, ".aa.dhla"))
 
-wk_dir <- file.path(src_dir, "2308_impHLA")
-wk_dir_hla <- file.path(wk_dir, "B_2_ReformatAssoc")
-wk_dir_omn <- file.path(wk_dir, step)
-if (!file.exists(wk_dir_omn)) dir.create(wk_dir_omn, recursive = T)
+wk_dir <- file.path(src_dir, step)
+if (!file.exists(wk_dir)) dir.create(wk_dir, recursive = T)
 
 # dhla_pfile <- file.path(wk_dir, "etc", str_c(smpl_name, "_dhla_pheno.txt"))
-dhla_pfile <- file.path(src_dir, "etc", str_c(smpl_name, "_dhla_pheno.txt"))
-dinfo_aa_file <- file.path(
-    wk_dir_hla, basename(dgeno_aa_file) %>% str_replace(dgeno_ext, "info")
-)
-
-# log_file <- file.path(wk_dir, "script", "logs", str_c(step, "_", today, ".log"))
-
-# (2) Load packages and in-house script
-# source("~/tools/script/GWAS/plink.tools.R")
-# source("D:/Dropbox/Tools/script/GWAS/plink.tools.R")
+etc_dir <- file.path(src_dir, "etc")
+dhla_pfile <- file.path(etc_dir, str_c(smpl_name, "_dhla_pheno.txt"))
+dinfo_aa_file <- file.path(etc_dir, str_c(imputed_fname, ".aa.info"))
 
 # [Main] ----------------------------------------------------------------------
 # (0) Logging
-# sink(file = log_file)
 cat("[Environmental argmunets]\n\n")
 cat("- Root directory:\n\t>> ", src_dir, "\n", sep = "")
 cat("- Genotype directory:\n\t>> ")
 cat(str_replace(geno_dir, src_dir, "."), "\n", sep = "")
-cat("\t- Reformatted dosage files:\n")
-cat("\t\t- ", str_replace(dgeno_aa_file, geno_dir, "."), "\n")
-cat("- Working directory:\n\t>> ")
-cat(str_replace(wk_dir, src_dir, "."), "\n", sep = "")
-cat("\t- Phenotype:", pheno_cname, "\n")
-cat("\t- Phenotype file:\n")
-cat("\t\t>> ", str_replace(dhla_pfile, wk_dir, "."), "\n", sep = "")
-cat("\t- Information files related DEEP*HLA: \n")
-cat("\t\t- ", str_replace(dinfo_aa_file, wk_dir, "."), "\n")
-cat("\t- Output directory:\n")
-cat("\t\t>> ", str_replace(wk_dir_omn, wk_dir, "."), "\n", sep = "")
+cat("- Phenotype:", pheno_cname, "\n")
+cat("- Phenotype file:\n")
+cat("\t>> ", str_replace(dhla_pfile, src_dir, "."), "\n", sep = "")
+cat("- Information files related DEEP*HLA: \n")
+cat("\t- ", str_replace(dinfo_aa_file, src_dir, "."), "\n")
+cat("- Output directory:\n")
+cat("\t>> ", str_replace(wk_dir, src_dir, "."), "\n", sep = "")
 cat("\n-----------------------------------------------------------\n\n")
 
 # (1) Check file whether to exist or not.
@@ -134,7 +94,7 @@ if (file.exists(dhla_pfile)) {
 } else {
     cat("\t-NOT EXIST PHENOTYPE FILE FOR DEEP*HLA !\n")
     cat("\t>>", str_replace(dhla_pfile, src_dir, "."), "\n", sep = "")
-    stop()
+    stop("Required input file(s) not found.")
 }
 if (file.exists(dinfo_aa_file)) {
     dinfo_data <- fread(dinfo_aa_file, header = T, showProgress = F)
@@ -149,27 +109,26 @@ stat_flist <- NULL
 cov_pclist <- str_subset(colnames(dhla_pdata), "PC\\d+")
 
 for (i in seq_along(sex_tlist)) {
-    sex_val <- i - 1
-    sex_name <- str_c(sprintf("%02d", sex_val), "_", sex_tlist[i])
+    sex_name <- str_c(sprintf("%02d", i - 1), "_", sex_tlist[i])
+    cat("\n[", sex_name, "]\n", sep = "")
 
+    dgeno_aa_file <- str_c(dgeno_aa_fname, "_", sex_name, ".txt")
     if (i == 1) {
-        egeno_aa_file <- dgeno_aa_file
-        all_covlist <- c(sex_cname, age_cname, cov_pclist)
+        all_covlist <- c("sex", "age", cov_pclist)
     } else {
-        egeno_aa_file <- str_replace(dgeno_aa_file, "\\.txt", str_c("_", sex_name, ".txt"))
-        all_covlist <- c(age_cname, cov_pclist)
+        all_covlist <- c("age", cov_pclist)
     }
 
-    cat("\n[", sex_name, "]\n", sep = "")
-    cat("- File check and allele information\n")
+    # (1) Load reformatted dosage file
+    cat("\n- Load reformatted dosage file\n")
 
-    if (!file.exists(egeno_aa_file)) {
+    if (!file.exists(dgeno_aa_file)) {
         cat("\t- NOT EXIST RE_FORMATTED DOSAGE FILE !\n")
-        cat("\t>>", str_replace(egeno_aa_file, geno_dir, "."), "\n", sep = "")
+        cat("\t>>", str_replace(dgeno_aa_file, geno_dir, "."), "\n", sep = "")
         next
     }
-    dgeno_data <- fread(egeno_aa_file, header = T, showProgress = F)
-    cat("\t<< ", str_replace(egeno_aa_file, geno_dir, "."), "\n", sep = "")
+    dgeno_data <- fread(dgeno_aa_file, header = T, showProgress = F)
+    cat("\t<< ", str_replace(dgeno_aa_file, geno_dir, "."), "\n", sep = "")
 
     # (2) Prepare for OMNIBUS test
     # a. Prepare variants' information for OMNIBUS test
@@ -180,13 +139,14 @@ for (i in seq_along(sex_tlist)) {
         filter(freq >= freq_val & freq <= (1 - freq_val)) %>%
         select(hla_name, aa_id)
     cat("\t- (Overall): ", nrow(dinfo_data), " variants\n", sep = "")
-    cat("\t- (after QC [MAF > 0.01, r2 > 0.7]): ", nrow(omni_idata), " variants\n", sep = "")
+    cat("\t- (after QC [MAF > ", freq_val, ", r2 > ", r2_val, "]): ", sep = "")
+    cat(nrow(omni_idata), " variants\n", sep = "")
 
     # b. Reformat genotype data for OMNIBUS test
     cat("\n- Reformat genotype data for OMNIBUS test\n")
     omni_gdata <- dgeno_data %>%
         pivot_longer(
-            -all_of(c(id_cname, all_covlist, pheno_cname)),
+            -all_of(c("iid", all_covlist, pheno_cname)),
             names_to = "genotype",
         ) %>%
         right_join(
@@ -230,12 +190,6 @@ for (i in seq_along(sex_tlist)) {
     cat("\t- (Overall): ", nrow(omni_gdata), " AA\n", sep = "")
     cat("\t- (var_num > 1): ", nrow(wk_gdata), " AA\n", sep = "")
 
-    wk_gdata %>%
-        mutate(colnames = map(data, ~ colnames(.x))) %>%
-        select(-data) %>%
-        fwrite("wk_tdata.txt", sep = "\t")
-
-
     # (2) Linear logistic regression by single marker
     cat("\t\n- Linear logistic regression by  ominibus test\n")
     stat_data <- wk_gdata %>%
@@ -273,7 +227,7 @@ for (i in seq_along(sex_tlist)) {
     cat("\t\n- Export statistic results and apply QC\n")
 
     stat_file <- file.path(
-        wk_dir_omn,
+        wk_dir,
         str_c(smpl_name, "_dhla.", sex_name, "_omni.txt")
     )
     fwrite(stat_data, stat_file, row.names = F, col.names = T, sep = "\t")
@@ -324,13 +278,7 @@ buf <- sig_data %>%
     ) %>%
     mutate(min.p = pmap_dbl(dplyr::select(., ends_with("p.value")), pmin, na.rm = T)) %>%
     dplyr::select(aa_id:pos, min.p, everything())
-# dplyr::select(aa_id:pos, min.p, everything()) %>%
-# arrange(min.p)
-# colnames(buf) <- colnames(buf) %>%
-#     str_replace("(.*):(\\d{2}_.*)", "\\2:\\1")
 
-sig_file <- file.path(wk_dir_omn, str_c(smpl_name, "_dhla_sigomni.txt"))
+sig_file <- file.path(wk_dir, str_c(smpl_name, "_dhla_sigomni.txt"))
 fwrite(buf, sig_file, row.names = F, col.names = T, sep = "\t")
 cat("\t>> ", str_replace(sig_file, wk_dir, "."), "\n\n", sep = "")
-
-# sink()

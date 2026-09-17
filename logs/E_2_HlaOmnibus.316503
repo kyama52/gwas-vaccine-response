@@ -1,0 +1,87 @@
+Loading required package: pacman
+[Environmental argmunets]
+
+- Root directory:
+	>> ~/analysis/COVID-19/2609_PrepGitRepo
+- Genotype directory:
+	>> ./genotype/04_imputation_hla
+- Working directory:
+	>> ./E_2_HlaOmnibus
+	- Phenotype: post_titer_norm 
+	- Phenotype file:
+		>> ./etc/covid-vac_dhla_pheno.txt
+	- Information files related DEEP*HLA: 
+		-  ./etc/covid-vac_hla_imputed.aa.info 
+	- Output directory:
+		>> ./E_2_HlaOmnibus
+
+-----------------------------------------------------------
+
+- Check file whether to exist or not
+<< ./etc/covid-vac_dhla_pheno.txt
+<< ./etc/covid-vac_hla_imputed.aa.info
+
+[00_total]
+- File check and allele information
+	<< ./covid-vac_hla_imputed.aa.dhla_00_total.txt
+
+- Prepare variants' information for OMNIBUS test
+	- (Overall): 2129 variants
+	- (after QC [MAF > 0.01, r2 > 0.7]): 1631 variants
+
+- Reformat genotype data for OMNIBUS test
+	- (Overall): 1321 AA
+	- (var_num > 1): 198 AA
+	
+- Linear logistic regression by  ominibus test
+	
+- Export statistic results and apply QC
+	>> ./E_2_HlaOmnibus/covid-vac_dhla.00_total_omni.txt
+
+[01_male]
+- File check and allele information
+	<< ./covid-vac_hla_imputed.aa.dhla_01_male.txt
+
+- Prepare variants' information for OMNIBUS test
+	- (Overall): 2129 variants
+	- (after QC [MAF > 0.01, r2 > 0.7]): 1631 variants
+
+- Reformat genotype data for OMNIBUS test
+	- (Overall): 1321 AA
+	- (var_num > 1): 198 AA
+	
+- Linear logistic regression by  ominibus test
+	
+- Export statistic results and apply QC
+	>> ./E_2_HlaOmnibus/covid-vac_dhla.01_male_omni.txt
+
+[02_female]
+- File check and allele information
+	<< ./covid-vac_hla_imputed.aa.dhla_02_female.txt
+
+- Prepare variants' information for OMNIBUS test
+	- (Overall): 2129 variants
+	- (after QC [MAF > 0.01, r2 > 0.7]): 1631 variants
+
+- Reformat genotype data for OMNIBUS test
+	- (Overall): 1321 AA
+	- (var_num > 1): 198 AA
+	
+- Linear logistic regression by  ominibus test
+	
+- Export statistic results and apply QC
+	>> ./E_2_HlaOmnibus/covid-vac_dhla.02_female_omni.txt
+
+-----------------------------------------------------------
+
+- Summarize statistics with significant association
+
+	- Extract data from each file applied QC
+	- No. of significant variants: 0
+	<< ./E_2_HlaOmnibus/covid-vac_dhla.00_total_omni.txt
+	<< ./E_2_HlaOmnibus/covid-vac_dhla.01_male_omni.txt
+	<< ./E_2_HlaOmnibus/covid-vac_dhla.02_female_omni.txt
+
+	- Reformat and add minimal p-value
+	>> ./covid-vac_dhla_sigomni.txt
+

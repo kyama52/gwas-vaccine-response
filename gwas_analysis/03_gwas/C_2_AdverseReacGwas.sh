@@ -24,8 +24,8 @@ STEP=C_2_AdverseReacGwas
 WK_DIR=${SRC_DIR}/${STEP}
 [[ ! -d ${WK_DIR}/logs ]] && mkdir -p ${WK_DIR}/logs
 
-# PHENO_LIST=("seff_fever" "seff_arthralgia" "seff_fatigue" "seff_cold" "seff_headache" "seff_muscles")
-PHENO_LIST=("seff_fever")
+PHENO_LIST=("seff_fever" "seff_arthralgia" "seff_fatigue" "seff_cold" "seff_headache" "seff_muscles")
+# PHENO_LIST=("seff_fever")
 
 TOOL_DIR=${SRC_DIR}/scripts/gwas_analysis
 SUB_SH_FILE=${TOOL_DIR}/03_gwas/sub_${STEP}.sh

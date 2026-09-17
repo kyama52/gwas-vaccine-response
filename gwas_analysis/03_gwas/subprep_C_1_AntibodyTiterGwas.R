@@ -1,6 +1,6 @@
-# ==============================================================================
-# Sub routine script for preparing phenotype files for stratified GWAS by sex
-# ==============================================================================
+#------------------------------------------------------------------------------
+# Subroutine for preparing phenotype files for stratified GWAS by sex
+#------------------------------------------------------------------------------
 # [Argumnets]
 # (0) Check and load packages
 if (!require("pacman")) install.packages("pacman")

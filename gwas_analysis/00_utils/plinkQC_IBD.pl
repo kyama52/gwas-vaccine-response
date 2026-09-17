@@ -1,6 +1,4 @@
 #!/usr/bin/perl
-#   UD: Apr 18, 2023    Change threshold from 0.185 to 0.125
-#   UD: Jan 05, 2023    Change filename for outputting
 
 use strict;
 
@@ -44,5 +42,4 @@ while(<GENOME>){
  		}
  	}
 }
-
 

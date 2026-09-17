@@ -1,0 +1,50 @@
+
+- Condition analysis
+
+Loading required package: pacman
+[Environmental argmunets]
+
+- Root directory:
+	>> ~/analysis/COVID-19/2609_PrepGitRepo
+- Genotype directory:
+	>> ./genotype/04_imputation_hla
+- Working directory:
+	>> ./E_3_ConditionedOmnibus
+	- Phenotype: post_titer_norm 
+	- Phenotype file:
+		>> ./etc/covid-vac_dhla_pheno.txt
+	- Information files related DEEP*HLA: 
+		-  ./etc/covid-vac_hla_imputed.info 
+		-  ./etc/covid-vac_hla_imputed.aa.info 
+	- Output directory:
+		>> ./E_3_ConditionedOmnibus
+
+-----------------------------------------------------------
+
+- Check file whether to exist or not
+	<< ./etc/covid-vac_dhla_pheno.txt
+	<< ./etc/covid-vac_hla_imputed.info
+	<< ./etc/covid-vac_hla_imputed.aa.info
+	<< ./genotype/04_imputation_hla/covid-vac_chr6_hla_imputed.raw.gz
+	<< ./genotype/04_imputation_hla/covid-vac_chr6_hla_imputed.bim.gz
+
+------------------------------
+[00_total]
+------------------------------
+
+- Load imputed allele files
+	<<./covid-vac_hla_imputed.dhla_00_total.txt
+	<<./covid-vac_hla_imputed.aa.dhla_00_total.txt
+
+<01>
+	Starting 2026.09.17 10:58
+
+- Check whether there is significant association < 5e-8
+	<< ~/analysis/COVID-19/2609_PrepGitRepo/E_2_HlaOmnibus/covid-vac_dhla.00_total_omni.txt
+	- minimal P: 8.81e-03 (AA_B_-10)
+
+- Conditioned analysis [single marker(1)]
+	>> ./E_3_ConditionedOmnibus/00_total/covid-vac_hla_00_total_01_rawlm.txt.gz
+	>> ./E_3_ConditionedOmnibus/00_total/covid-vac_hla_00_total_01_qclm.txt.gz
+
+- Conditioned analysis [single marker(2)]

@@ -1,25 +1,12 @@
 #! /bin/bash
-# ==============================================================================
-#  B_5_ConditionedOmnibus.sh
-#   CD: Apr 03 2025     Written by K.Yamazaki
-#   - For multiprocessiong on R, add option --cpus-per-task=28 --mem=100G
-#   UD: Apr 07 2025     Bug fix
 #------------------------------------------------------------------------------
-#  Condition analysis based on association results of HLA imputation
-#
-#  Usage:
-#   sbatch -J B_5_ConditionedOmnibus ./B_5_ConditionedOmnibus.sh
-#------------------------------------------------------------------------------
-#  Memo
-#
-#  ref)
+#  Perform conditional analysis based on HLA imputation association results
+#  [antibody titer]
 #------------------------------------------------------------------------------
 # [Arguments] (1) SLURM arguments
-# #SBATCH --mem=4gb
 #SBATCH --mem=100G
 #SBATCH -o logs/%x.%j
-# #SBATCH -e logs/%x.%j
-# #SBATCH -qos cpu-normal
+#SBATCH -e logs/%x.%j
 #SBATCH --nodes=1               # -N, --node
 #SBATCH --ntasks=1              # -n, --ntasks
 #SBATCH --cpus-per-task=28
@@ -29,23 +16,21 @@
 set -eu
 
 # [Arguments] (2) Environmental args
-SRC_DIR=$HOME/analysis/COVID-19
-SMPL_NAME=CUH-GWAS_230215
-GENO_DNAME=PLINK_160223_1213
+SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SMPL_NAME=covid-vac
 
 CHR=6
 HLA_STR=24
 HLA_END=36
 
-GENO_DIR=${SRC_DIR}/genotype/${GENO_DNAME}
-GENO_DIR_IMPQC=${GENO_DIR}/03_qc_imputed/qc_2
+GENO_DIR=${SRC_DIR}/genotype
+GENO_DIR_IMPQC=${GENO_DIR}/03_qc_imputed
 GENO_DIR_HLA=${GENO_DIR}/04_imputation_hla
-MHC_GNAME=${GENO_DIR_HLA}/${SMPL_NAME}_chr${CHR}_mhc_imputed
+MHC_GNAME=${GENO_DIR_HLA}/${SMPL_NAME}_chr${CHR}_hla_imputed
 
-WK_DIR=${SRC_DIR}/2308_impHLA
+STEP=E_3_ConditionedOmnibus
 
-STEP=B_5_ConditionedOmnibus
-
+TOOL_DIR=${SRC_DIR}/scripts/gwas_analysis
 APPC_DIR=$HOME/tools/container
 
 #------------------------------------------------------------------------------
@@ -77,6 +62,7 @@ fi
 
 # (2) Condition analysis
 echo -e "\n- Condition analysis\n"
-apptainer exec ${APPC_DIR}/gwas.sif Rscript ${WK_DIR}/script/sub_${STEP}.R
+apptainer exec ${APPC_DIR}/gwas.sif \
+    Rscript ${TOOL_DIR}/05_hla_association/sub_${STEP}.R
 
 echo -e "\nFinished $(date +"%Y/%m/%d %H:%M")\n"
