@@ -108,7 +108,7 @@ pacman::p_load(
 )
 
 # (1) Environmental arguments
-src_dir <- "~/analysis/COVID-19/2609_PrepGitRepo"
+src_dir <- "/path/to/project"
 smpl_name <- "covid-vac"
 step <- "E_3_ConditionedOmnibus"
 

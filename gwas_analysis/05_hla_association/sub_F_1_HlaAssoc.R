@@ -13,7 +13,7 @@ conflict_prefer("select", "dplyr")
 conflict_prefer("filter", "dplyr")
 
 # (1) Environmental arguments
-src_dir <- "~/analysis/COVID-19/2609_PrepGitRepo"
+src_dir <- "/path/to/project"
 smpl_name <- "covid-vac"
 step <- "F_1_HlaAssoc"
 
