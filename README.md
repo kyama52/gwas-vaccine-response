@@ -6,7 +6,7 @@ This repository contains the analysis code used in the study:
 
 ## Overview
 
-The scripts in this repository were used for genotype quality control, genotype imputation, genome-wide association analyses, HLA imputation, and HLA association analyses.
+The scripts in this repository were used for genotype quality control, genotype imputation, genome-wide association analyses, HLA imputation, and HLA association analyses, and additional analyses of lead variants.
 
 The analysis code is organized as follows:
 
@@ -16,6 +16,7 @@ The analysis code is organized as follows:
 - `03_gwas/` — Genome-wide association analyses of antibody titers and adverse reactions
 - `04_hla_imputation/` — HLA imputation using DEEP*HLA
 - `05_hla_association/` — Single-marker, omnibus, and conditional HLA association analyses
+- `06_additional_analysis/` — SNP-by-sex interaction and sex- and age-stratified analyses
 
 ## Directory settings
 
