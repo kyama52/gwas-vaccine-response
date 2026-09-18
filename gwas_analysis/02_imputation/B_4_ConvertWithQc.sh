@@ -22,7 +22,7 @@
 set -eu
 
 # [Arguments] (2) Environmental args
-SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SRC_DIR=/path/to/project
 SMPL_NAME=covid-vac
 R2_VAL=0.6
 MAF_VAL=0.05
@@ -40,7 +40,7 @@ THRES_VAL_2=cov19_phx
 RMV_SFILE=${ETC_DIR}/rmv_smpl_expvirus.txt
 
 TOOL_DIR=${SRC_DIR}/scripts/gwas_analysis
-APPC_DIR=$HOME/tools/container
+APPC_DIR=/path/to/container
 
 #------------------------------------------------------------------------------
 # [Main script ]

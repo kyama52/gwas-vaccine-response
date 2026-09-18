@@ -48,3 +48,51 @@ Loading required package: pacman
 	>> ./E_3_ConditionedOmnibus/00_total/covid-vac_hla_00_total_01_qclm.txt.gz
 
 - Conditioned analysis [single marker(2)]
+	>> ./E_3_ConditionedOmnibus/00_total/covid-vac_gwas_00_total_01_rawlm.txt.gz
+	>> ./E_3_ConditionedOmnibus/00_total/covid-vac_gwas_00_total_01_qclm.txt.gz
+	
+- Linear logistic regression by  ominibus test
+	
+- Export statistic results and apply QC
+	>> ./E_3_ConditionedOmnibus/00_total/covid-vac_dhla.00_total_01_omni.txt
+	Finished 2026.09.17 18:39
+
+<02>
+	Starting 2026.09.17 18:39
+
+- Check whether there is significant association < 5e-8
+	<< ./00_total/covid-vac_dhla.00_total_01_omni.txt
+	- minimal P: 3.25e-02 (AA_DRB1_140)
+
+------------------------------
+[01_male]
+------------------------------
+
+- Load imputed allele files
+	<<./covid-vac_hla_imputed.dhla_01_male.txt
+	<<./covid-vac_hla_imputed.aa.dhla_01_male.txt
+
+<01>
+	Starting 2026.09.17 18:39
+
+- Check whether there is significant association < 5e-8
+	<< ~/analysis/COVID-19/2609_PrepGitRepo/E_2_HlaOmnibus/covid-vac_dhla.01_male_omni.txt
+	- minimal P: 2.05e-02 (AA_DRB1_38)
+
+------------------------------
+[02_female]
+------------------------------
+
+- Load imputed allele files
+	<<./covid-vac_hla_imputed.dhla_02_female.txt
+	<<./covid-vac_hla_imputed.aa.dhla_02_female.txt
+
+<01>
+	Starting 2026.09.17 18:39
+
+- Check whether there is significant association < 5e-8
+	<< ~/analysis/COVID-19/2609_PrepGitRepo/E_2_HlaOmnibus/covid-vac_dhla.02_female_omni.txt
+	- minimal P: 1.04e-01 (AA_DRB1_28)
+
+Finished 2026/09/17 18:39
+

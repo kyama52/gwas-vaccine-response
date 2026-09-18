@@ -1,15 +1,7 @@
 #! /bin/bash
-# ==============================================================================
-#  tools_gwas.sh
-#===============================================================================
-# Gloval Argument
-
-atexit() {
-    [[ -n $tmpfile ]] && rm -f "$tmpfile"
-}
-tmpfile=$(mktemp)
-trap atexit EXIT
-trap 'trap - EXIT; atexit; exit -i' SIGHUP SIGINT SIGTERM
+#------------------------------------------------------------------------------
+# Utility functions for genotype QC and file conversion
+#------------------------------------------------------------------------------
 
 #===============================================================================
 # overwrite_bim_cmcol
@@ -54,15 +46,9 @@ function overwrite_bim_cmcol() {
 function convert_eigen2plink() {
     local input_file
     local out_dir
-    local title
 
     if [ $# -ne 1 ] && [ $# -ne 2 ]; then
         echo "ERROR: Input File and out_dir [optional] "
-        return 1
-    fi
-
-    if [ $# -ne 1 ]; then
-        echo "ERROR: Input filename exported by EIGEN"
         return 1
     fi
 

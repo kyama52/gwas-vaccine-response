@@ -10,7 +10,7 @@ pacman::p_load(
 )
 
 # (1) Environmental arguments
-src_dir <- "~/analysis/COVID-19/2609_PrepGitRepo"
+src_dir <- "/path/to/project"
 smpl_name <- "covid-vac"
 etc_dir <- file.path(src_dir, "etc")
 
@@ -28,7 +28,8 @@ cov_file <- file.path(etc_dir, str_c(smpl_name, "_plink.covar"))
 sex_tlist <- c("00_total", "01_male", "02_female")
 
 # (2) Load packages and in-house script
-source("~/tools/script/GWAS/plink.tools.R")
+tool_dir <- file.path(src_dir, "scripts", "gwas_analysis", "00_utils")
+source(file.path(tool_dir, "gwas_tools.R"))
 
 # [Main] ----------------------------------------------------------------------
 # (1) Check distribution phenotype and covariate files

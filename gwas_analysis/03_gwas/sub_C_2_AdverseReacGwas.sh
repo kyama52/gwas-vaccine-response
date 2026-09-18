@@ -4,7 +4,7 @@
 #------------------------------------------------------------------------------
 
 # [Arguments] (0) Environmental args
-SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SRC_DIR=/path/to/project
 SMPL_NAME=covid-vac
 
 GENO_DIR=${SRC_DIR}/genotype
@@ -24,7 +24,7 @@ SEX_LIST=(total male female)
 
 TOOL_DIR=${SRC_DIR}/scripts/gwas_analysis
 SUB_JL_FILE=${TOOL_DIR}/03_gwas/sub_${STEP}.jl
-APPC_DIR=$HOME/tools/container
+APPC_DIR=/path/to/container
 
 #------------------------------------------------------------------------------
 # [Main script ]

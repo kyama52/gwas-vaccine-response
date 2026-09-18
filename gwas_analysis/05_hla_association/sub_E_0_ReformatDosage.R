@@ -10,7 +10,7 @@ pacman::p_load(
 )
 
 # (1) Environmental arguments
-src_dir <- "~/analysis/COVID-19/2609_PrepGitRepo"
+src_dir <- "/path/to/project"
 smpl_name <- "covid-vac"
 
 geno_dir <- file.path(src_dir, "genotype", "04_imputation_hla")
@@ -218,7 +218,7 @@ for (dhla_gfile in dhla_gflist) {
             } else {
                 wk_gdata <- geno_data %>%
                     filter(sex == sex_val) %>%
-                    mutate(age_cname = scale(age)) %>%
+                    mutate(age = scale(age)) %>%
                     mutate(post_titer_norm = inv_nor_trans(post_titer_log))
             }
 

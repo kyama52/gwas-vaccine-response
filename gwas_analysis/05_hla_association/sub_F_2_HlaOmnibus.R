@@ -269,7 +269,7 @@ if (!length(stat_flist)) {
 
 if (!nrow(sig_vlist)) {
     cat("\t\t>> NOT exist variants satisfied p.value <= ", sig_p, "\n", sep = "")
-    next
+    quit(save = "no", status = 0)
 }
 sig_vlist <- sig_vlist %>% distinct()
 cat("\t- No. of significant variants: ", nrow(sig_vlist), "\n", sep = "")

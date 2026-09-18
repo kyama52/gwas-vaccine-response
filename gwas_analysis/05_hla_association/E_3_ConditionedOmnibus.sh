@@ -16,7 +16,7 @@
 set -eu
 
 # [Arguments] (2) Environmental args
-SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SRC_DIR=/path/to/project
 SMPL_NAME=covid-vac
 
 CHR=6
@@ -31,7 +31,7 @@ MHC_GNAME=${GENO_DIR_HLA}/${SMPL_NAME}_chr${CHR}_hla_imputed
 STEP=E_3_ConditionedOmnibus
 
 TOOL_DIR=${SRC_DIR}/scripts/gwas_analysis
-APPC_DIR=$HOME/tools/container
+APPC_DIR=/path/to/container
 
 #------------------------------------------------------------------------------
 # [Main script ]

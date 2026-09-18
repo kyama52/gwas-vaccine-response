@@ -11,11 +11,11 @@
 set -eu
 
 # [Arguments] (2) Environmental args
-SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SRC_DIR=/path/to/project
 STEP=E_0_ReformatDosage
 
 TOOL_DIR=${SRC_DIR}/scripts/gwas_analysis
-APPC_DIR=$HOME/tools/container
+APPC_DIR=/path/to/container
 
 #------------------------------------------------------------------------------
 # [Main script ]

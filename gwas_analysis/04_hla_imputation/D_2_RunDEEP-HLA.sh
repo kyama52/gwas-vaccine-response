@@ -13,7 +13,7 @@ set -eu
 
 #------------------------------------------------------------------------------
 # [Arguments] (2) Environmental args
-SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SRC_DIR=/path/to/project
 SMPL_NAME=covid-vac
 
 DHLA_DIR=$HOME/local/DEEP-HLA
@@ -31,7 +31,7 @@ VENV_DIR=${HOME}/.venvs
 VNAME=DEEP-HLA
 [[ ! -d ${VENV_DIR} ]] && mkdir -p ${VENV_DIR}
 if [ ! -d ${VENV_DIR}/${VNAME} ]; then
-    bash ${TOOL_DIR}/04_hla_imputation/D_0_SetupVencDeepHLA.sh
+    bash ${TOOL_DIR}/04_hla_imputation/D_0_SetupVenvDeepHLA.sh
 fi
 
 #------------------------------------------------------------------------------

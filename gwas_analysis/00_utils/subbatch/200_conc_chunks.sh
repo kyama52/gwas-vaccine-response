@@ -1,9 +1,7 @@
 #! /bin/bash
 # ==============================================================================
-#  200_conc_chunks.sh
-#-------------------------------------------------------------------------------
 #  Sub routine script for concentration chunk files
-#
+#------------------------------------------------------------------------------
 #  [Causion!]
 #   Gloval variables in this script
 #   - $HOME/resource/Eagle/BBJ1K_1KGP_RefPanel_b155

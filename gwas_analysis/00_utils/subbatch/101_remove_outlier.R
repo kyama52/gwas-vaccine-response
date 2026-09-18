@@ -1,7 +1,6 @@
 # ==============================================================================
-#  101_remove_outlier.R
 #   Sub routine script for removing outlier
-#
+#------------------------------------------------------------------------------
 #   Arguments:
 #       args[1](eigen_file) Eigenvec file exported or converted by EIGEN | plink
 #       args[2](cond_pc1)   Condition for removing by PC1
@@ -35,7 +34,7 @@ message("COND_1: PC1 ", cond_pc1)
 message("COND_2: PC2 ", cond_pc2, "\n")
 
 # (2) Load packages and in-house script
-tool_dir <- "~/analysis/COVID-19/2609_PrepGitRepo/scripts/gwas_analysis/00_utils"
+tool_dir <- "/path/to/project/scripts/gwas_analysis/00_utils"
 source(file.path(tool_dir, "gwas_tools.R"))
 
 # [Main]

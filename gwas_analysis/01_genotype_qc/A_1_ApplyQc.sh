@@ -30,7 +30,7 @@ RESHAP=hapmap3r2_CEU.CHB.JPT.YRI.no-at-cg-snps
 HIGH_LD=high-LD-regions.txt
 NON_EAS=hapmap3r2_nonEAS.txt
 
-SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SRC_DIR=/path/to/project
 SMPL_NAME=covid-vac
 
 STEP=A_1_ApplyQc

@@ -25,7 +25,7 @@
 #SBATCH -p cpu
 
 # [Arguments] (2) Environmental args
-SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SRC_DIR=/path/to/project
 SMPL_NAME=covid-vac
 
 STEP=A_2_CleanDataAfterQc
@@ -47,7 +47,7 @@ export PATH=$EIGEN_DIR:$PATH
 
 TOOL_DIR=${SRC_DIR}/scripts/gwas_analysis
 . ${TOOL_DIR}/00_utils/gwas_tools.sh
-APPC_DIR=$HOME/tools/container
+APPC_DIR=/path/to/container
 
 #------------------------------------------------------------------------------
 # [Main script ]

@@ -28,7 +28,7 @@ RES_DIR_EGL=${RES_DIR}/Eagle/BBJ1K
 RES_DIR_MMC=${RES_DIR}/minimac/BBJ1K
 RES_FNAME=BBJ1K_1KGP_RefPanel_b155
 
-SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SRC_DIR=/path/to/project
 SMPL_NAME=covid-vac
 
 GENO_DIR=${SRC_DIR}/genotype
@@ -49,7 +49,7 @@ UPD_ID_FILE=${GENO_DIR_IMP}/snps-upd-id.txt
 UPD_AL_FILE=${GENO_DIR_IMP}/snps-upd-allele.txt
 CMN_SNP_FILE=${GENO_DIR_IMP}/snps-reference-dup.txt
 
-APPC_DIR=$HOME/tools/container
+APPC_DIR=/path/to/container
 
 atexit() {
     [[ -n $tmpfile ]] && rm -f "$tmpfile"

@@ -24,14 +24,14 @@ RES_DIR_EGL=${RES_DIR}/Eagle/BBJ1K
 RES_DIR_MMC=${RES_DIR}/minimac/BBJ1K
 RES_FNAME=BBJ1K_1KGP_RefPanel_b155
 
-SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SRC_DIR=/path/to/project
 SMPL_NAME=covid-vac
 
 GENO_DIR=${SRC_DIR}/genotype
 GENO_DIR_IMP=${GENO_DIR}/02_imputation
 [ ! -d $GENO_DIR_IMP ] && mkdir -p $GENO_DIR_IMP
 
-APPC_DIR=$HOME/tools/container
+APPC_DIR=/path/to/container
 
 #------------------------------------------------------------------------------
 # [Main script ]

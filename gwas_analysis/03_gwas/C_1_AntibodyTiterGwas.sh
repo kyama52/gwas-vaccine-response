@@ -11,7 +11,7 @@
 set -eu
 
 # [Arguments] (2) Environmental args
-SRC_DIR=$HOME/analysis/COVID-19/2609_PrepGitRepo
+SRC_DIR=/path/to/project
 SMPL_NAME=covid-vac
 
 GENO_DIR=${SRC_DIR}/genotype
@@ -24,7 +24,7 @@ WK_DIR=${SRC_DIR}/${STEP}
 TOOL_DIR=${SRC_DIR}/scripts/gwas_analysis
 SUB_SH_FILE=${TOOL_DIR}/03_gwas/sub_${STEP}.sh
 PREP_R_FILE=${TOOL_DIR}/03_gwas/subprep_${STEP}.R
-APPC_DIR=$HOME/tools/container
+APPC_DIR=/path/to/container
 
 #------------------------------------------------------------------------------
 # [Main script ]

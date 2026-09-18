@@ -121,8 +121,7 @@ freq_val <- 0.01
 r2_val <- 0.7
 today <- as.character(format(Sys.time(), "%Y%m%d"))
 sex_tlist <- c("total", "male", "female")
-# sig_p <- 5e-8
-sig_p <- 0.01
+sig_p <- 5e-8
 
 geno_dir <- file.path(src_dir, "genotype", "04_imputation_hla")
 raw_pfile <- file.path(geno_dir, str_c(smpl_name, "_chr6_hla_imputed.raw.gz"))
@@ -172,7 +171,7 @@ if (file.exists(dhla_pfile)) {
 } else {
     cat("\t-NOT EXIST PHENOTYPE FILE FOR DEEP*HLA !\n")
     cat("\t>> ", str_replace(dhla_pfile, src_dir, "."), "\n", sep = "")
-    stop()
+    stop("Required input file(s) not found.")
 }
 if (file.exists(dinfo_cv_file)) {
     dinfo_cdata <- fread(dinfo_cv_file, header = T, showProgress = F)
@@ -357,9 +356,9 @@ for (i in seq_along(sex_tlist)) {
 
         # b. Export result to file
         res_data <- dinfo_data %>%
-            right_join(stat_data %>% rename(hla_name = genotype), by = "hla_name") # <<< Check
+            right_join(stat_data %>% rename(hla_name = genotype), by = "hla_name")
         res_file <- file.path(stat_dir, str_c(smpl_name, "_hla_", sex_name, "_", rtime, "_rawlm.txt"))
-        fwrite(stat_data, res_file, row.names = F, col.names = T, sep = "\t")
+        fwrite(res_data, res_file, row.names = F, col.names = T, sep = "\t")
         system(paste("gzip -f", res_file))
         cat("\t>> ", str_replace(res_file, src_dir, "."), ".gz\n", sep = "")
 

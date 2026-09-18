@@ -1,10 +1,6 @@
 # ==============================================================================
-#  sub_C_extract_cmn_vars.R
-#
-#  CD : 14 Feb, 2023    K.Yamazaki
-#  - Add procedure for [chr X <-> chr 23]
+#  103_extract_cmn_vars.R
 #------------------------------------------------------------------------------
-#  Memo
 #   Sub routine script for extract common variants
 #       between BIM(target) and VCF(reference)
 #
@@ -68,7 +64,6 @@ message("\nOUT_DIR:\n\t>> ", out_dir, "\n")
 ref_dir <- "~/resource/Eagle/BBJ1K"
 ref_fname <- "BBJ1K_1KGP_RefPanel_b155"
 bcf_flist <- list.files(ref_dir, str_c(ref_fname, "_chr(\\d{1,2}|X)\\.bcf$"), full.names = T)
-# asa_file <- "~/resource/illumina/infinium-asian-screening-array-24v1-0/ASA-24v1-0_E1.csv"
 asa_file <- "~/resource/illumina/infinium-asian-screening-array-24v1-0/ASA-24v1-0_A1.csv"
 
 clist_file <- file.path(out_dir, "snps-reference-cmn.txt")
